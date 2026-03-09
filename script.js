@@ -46,6 +46,11 @@ let activeTarget = null;
 let countdownInterval = null;
 let feedbackTimer = null;
 
+function setStatusText(message = "") {
+  statusText.textContent = message;
+  statusText.hidden = !message;
+}
+
 function sanitizeLabel(label) {
   return String(label || "")
     .trim()
@@ -418,7 +423,7 @@ function resetDisplay() {
   Object.values(valueNodes).forEach((node) => {
     node.textContent = "0";
   });
-  statusText.textContent = "Counting down.";
+  setStatusText("");
   document.title = APP_TITLE;
 }
 
@@ -443,14 +448,14 @@ function renderCountdown() {
   valueNodes.seconds.textContent = pad(seconds);
 
   if (difference <= 0) {
-    statusText.textContent = activeTarget.label
+    setStatusText(activeTarget.label
       ? `${activeTarget.label} is now.`
-      : "It's now.";
+      : "It's now.");
     document.title = getDocumentTitle(activeTarget.label, 0, true);
     return;
   }
 
-  statusText.textContent = "Counting down.";
+  setStatusText("");
   document.title = getDocumentTitle(activeTarget.label, days, false);
 }
 

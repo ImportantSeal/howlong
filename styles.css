@@ -290,10 +290,12 @@ button:hover {
 .target-name {
   margin: 0;
   font-size: clamp(3rem, 8vw, 7rem);
-  line-height: 0.88;
+  line-height: 0.92;
   letter-spacing: -0.08em;
   max-width: 12ch;
+  padding-bottom: 0.14em;
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .target-line {
