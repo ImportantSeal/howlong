@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Until</title>
+  <meta
+    name="description"
+    content="A minimal, shareable countdown focused on one thing: how long until."
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="stage">
+      <div class="stage-topbar">
+        <p id="target-zone-label" class="meta-chip"></p>
+
+        <details id="controls" class="controls">
+          <summary>Set target</summary>
+
+          <form id="target-form" class="target-form">
+            <label class="field field-wide" for="target-label">
+              <span class="field-label">Until</span>
+              <input
+                id="target-label"
+                name="target-label"
+                type="text"
+                placeholder="Birthday, launch, trip"
+                maxlength="60"
+                autocomplete="off"
+              >
+            </label>
+
+            <label class="field" for="target-date">
+              <span class="field-label">Date</span>
+              <input id="target-date" name="target-date" type="date" required>
+            </label>
+
+            <label class="field" for="target-time">
+              <span class="field-label">Time</span>
+              <input id="target-time" name="target-time" type="time" step="60" required>
+            </label>
+
+            <label class="field field-wide" for="target-zone">
+              <span class="field-label">Timezone</span>
+              <input
+                id="target-zone"
+                name="target-zone"
+                type="text"
+                list="time-zone-options"
+                placeholder="Europe/Helsinki"
+                autocomplete="off"
+                spellcheck="false"
+                required
+              >
+            </label>
+
+            <div class="actions">
+              <button type="submit" class="primary-button">Update</button>
+              <button id="copy-link-button" type="button" class="ghost-button">Copy link</button>
+            </div>
+
+            <p id="feedback" class="feedback" role="status" aria-live="polite" hidden></p>
+          </form>
+        </details>
+      </div>
+
+      <div class="target-meta">
+        <h1 id="target-label-display" class="target-name">How long until...?</h1>
+        <p id="target-zoned" class="target-line"></p>
+        <p id="target-local" class="target-subline"></p>
+      </div>
+
+      <section class="countdown" aria-live="polite" aria-label="Time remaining">
+        <article class="time-card">
+          <span id="days" class="time-value">0</span>
+          <span class="time-label">days</span>
+        </article>
+        <article class="time-card">
+          <span id="hours" class="time-value">0</span>
+          <span class="time-label">hours</span>
+        </article>
+        <article class="time-card">
+          <span id="minutes" class="time-value">0</span>
+          <span class="time-label">minutes</span>
+        </article>
+        <article class="time-card">
+          <span id="seconds" class="time-value">0</span>
+          <span class="time-label">seconds</span>
+        </article>
+      </section>
+
+      <p id="status-text" class="status-text">Counting down.</p>
+    </section>
+  </main>
+
+  <datalist id="time-zone-options"></datalist>
+
+  <script src="script.js"></script>
+</body>
+</html>
