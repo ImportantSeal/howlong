@@ -1,5 +1,5 @@
 const LEGACY_TIME_ZONE = "Europe/Helsinki";
-const DEFAULT_TIME = "17:00";
+const DEFAULT_TIME = "00:00";
 const STORAGE_KEY = "countdown-target";
 const LEGACY_STORAGE_KEY = "helsinki-countdown-target";
 const APP_TITLE = "Until";
@@ -268,23 +268,13 @@ function buildTarget(dateString, timeString, timeZoneInputValue, labelInput = ""
 function getNextDefaultTarget(timeZone) {
   const resolvedTimeZone = normalizeTimeZone(timeZone) || defaultTimeZone;
   const zonedNow = getPartsInZone(new Date(), resolvedTimeZone);
-  const timeParts = parseTimeString(DEFAULT_TIME);
   const targetDate = new Date(Date.UTC(
     zonedNow.year,
     zonedNow.month - 1,
     zonedNow.day,
   ));
 
-  const isPastOrCurrentTargetTime =
-    zonedNow.hour > timeParts.hour ||
-    (zonedNow.hour === timeParts.hour && zonedNow.minute > timeParts.minute) ||
-    (zonedNow.hour === timeParts.hour &&
-      zonedNow.minute === timeParts.minute &&
-      zonedNow.second >= 0);
-
-  if (isPastOrCurrentTargetTime) {
-    targetDate.setUTCDate(targetDate.getUTCDate() + 1);
-  }
+  targetDate.setUTCDate(targetDate.getUTCDate() + 1);
 
   const dateString = [
     targetDate.getUTCFullYear(),
