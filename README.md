@@ -26,4 +26,21 @@ The target is always interpreted in the selected IANA timezone. Viewers then see
 
 ## Deploy
 
-Publish the repository root as a static site. GitHub Pages works without additional configuration or build tooling.
+This repo includes a GitHub Actions workflow for Pages:
+
+- `.github/workflows/pages.yml`
+
+Setup steps:
+
+1. Push to `main` or `master`.
+2. In GitHub: `Settings -> Pages`.
+3. Set `Source` to `GitHub Actions`.
+4. Wait for workflow `Deploy GitHub Pages` to finish.
+
+After deploy, site URL is:
+
+- `https://<username>.github.io/<repo>/`
+
+Example share link format:
+
+- `https://<username>.github.io/<repo>/?target=2026-03-13T17:00&zone=America%2FNew_York&label=Launch`
